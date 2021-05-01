@@ -29,5 +29,5 @@ def signup(request):
   return render(request, 'kanban/signup.html',context)
 
 class UserDetailView(DetailView):
-  model = User
-  template_name = "kanban/users/detail.html"
+    model = User
+    template_name = "kanban/users/detail.html"

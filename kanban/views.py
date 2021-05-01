@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.views.generic import DetailView
 
-from .forms import UserForm
+# from .forms import UserForm
 
 def index(request):
   return render(request, "kanban/index.html")
@@ -27,3 +27,7 @@ def signup(request):
     "form":form
   }
   return render(request, 'kanban/signup.html',context)
+
+class UserDetailView(DetailView):
+  model = User
+  template_name = "kanban/users/detail.html"

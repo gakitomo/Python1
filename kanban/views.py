@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, resolve_url
 from django.views.generic import DetailView, UpdateView
 
+from .mixins import OnlyYouMixin
 # from .forms import UserForm
 
 def index(request):
@@ -32,7 +33,7 @@ class UserDetailView(DetailView):
   model = User
   template_name = "kanban/users/detail.html"
 
-class UserUpdateView(UpdateView):
+class UserUpdateView(OnlyYouMixin, UpdateView):
   model = User
   template_name = "kanban/users/update.html"
   form_class = UserForm

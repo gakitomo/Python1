@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, resolve_url
 from django.views.generic import DetailView, UpdateView
 
+from .forms import UserForm
 from .mixins import OnlyYouMixin
-# from .forms import UserForm
 
 def index(request):
   return render(request, "kanban/index.html")

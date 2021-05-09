@@ -56,6 +56,6 @@ class ListCreateView(LoginRequiredMixin, CreateView):
       form.instance.user = self.request.user
       return super().form_valid(form)
 
-def ListListView(LoginRequiredMixin, ListView):
+class ListListView(LoginRequiredMixin, ListView):
   model = List
   template_name = "kanban/lists/list.html"

@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, resolve_url
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, UpdateView, CreateView
+from django.views.generic import DetailView, UpdateView, CreateView, ListView
 from django.views.generic import DetailView, UpdateView
 
 from .forms import UserForm
@@ -47,11 +47,15 @@ class UserUpdateView(OnlyYouMixin, UpdateView):
     return resolve_url('kanban:users_detail', pk=self.kwargs['pk'])
 
 class ListCreateView(LoginRequiredMixin, CreateView):
-    model = List
-    template_name = "kanban/lists/create.html"
-    form_class = ListForm
-    success_url = reverse_lazy("kanban:home")
+  model = List
+  template_name = "kanban/lists/create.html"
+  form_class = ListForm
+  success_url = reverse_lazy("kanban:home")
 
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+  def form_valid(self, form):
+      form.instance.user = self.request.user
+      return super().form_valid(form)
+
+def ListListView(LoginRequiredMixin, ListView):
+  model = List
+  template_name = "kanban/lists/list.html"

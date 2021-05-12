@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect, resolve_url
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, UpdateView, CreateView, ListView
 from django.views.generic import DetailView, UpdateView
+from django.views.generic import DetailView, UpdateView, CreateView, ListView, DeleteView
 
 from .forms import UserForm
 from .mixins import OnlyYouMixin
@@ -71,3 +72,8 @@ class ListUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return resolve_url('kanban:lists_detail', pk=self.kwargs['pk'])
+
+class ListDeleteView(LoginRequiredMixin, DeleteView):
+    model = List
+    template_name = "kanban/lists/delete.html"
+    success_url = reverse_lazy("kanban:lists_list")

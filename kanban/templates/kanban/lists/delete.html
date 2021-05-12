@@ -6,7 +6,8 @@
   <form method="post">
     {% csrf_token %}
     <p>リスト "{{ list.title }}" を本当に削除してもよろしいですか？</p>
-    <button type="submit" class="btn btn-danger">確認</button>
+    <button type="submit" class="btn btn-danger">削除</button>
+    <a class="btn btn-success" href="{% url 'kanban:lists_list' %}" role="button">戻る</a>
   </form>
 </div>
 {% endblock %}

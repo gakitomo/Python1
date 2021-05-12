@@ -11,5 +11,6 @@
   </dl>
   <a class="btn btn-primary" href="{% url 'kanban:lists_update' list.pk  %}" role="button">編集</a>
   <a class="btn btn-danger" href="{% url 'kanban:lists_delete' list.pk  %}" role="button">削除</a>
+  <a class="btn btn-success" href="{% url 'kanban:lists_list' %}" role="button">戻る</a>
 </div>
 {% endblock %}

@@ -10,7 +10,9 @@ from django.views.generic import DetailView, UpdateView
 from django.views.generic import DetailView, UpdateView, CreateView, ListView, DeleteView
 
 from .forms import UserForm
+from .forms import UserForm, ListForm, CardForm
 from .mixins import OnlyYouMixin
+from .models import List, Card
 from .forms import UserForm, ListForm
 from . models import List
 
@@ -77,3 +79,13 @@ class ListDeleteView(LoginRequiredMixin, DeleteView):
     model = List
     template_name = "kanban/lists/delete.html"
     success_url = reverse_lazy("kanban:lists_list")
+
+class CardCreateView(LoginRequiredMixin, CreateView):
+    model = Card
+    template_name = "kanban/cards/create.html"
+    form_class = CardForm
+    success_url = reverse_lazy("kanban:home")
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)

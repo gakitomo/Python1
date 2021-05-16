@@ -14,7 +14,7 @@ from .forms import UserForm, ListForm, CardForm
 from .mixins import OnlyYouMixin
 from .models import List, Card
 from .forms import UserForm, ListForm
-from . models import List
+# from . models import List
 
 def index(request):
   return render(request, "kanban/index.html")
